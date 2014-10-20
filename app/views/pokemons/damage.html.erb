@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <h3>Damage Pokemon</h3>
+    <p><strong>Attacking:</strong> <%= @pokemon.name %> (Health: <%= @pokemon.health %>) (Level: <%= @pokemon.level %>)</p>
+    <%= form_tag damage_path(id: @pokemon.id) do %>
+      <p><strong>Attack with Pokemon:</strong></p>
+      <%= select_tag 'attack_pokemon', options_from_collection_for_select(current_trainer.pokemons.where('health > 0'), 'id', 'name') %>
+      <%= submit_tag "Attack", :class => "button medium" %>
+    <% end %>
+  </div>
+</div>

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018092449) do
+ActiveRecord::Schema.define(version: 20141020052114) do
+
+  create_table "pokemons", force: true do |t|
+    t.string   "name"
+    t.integer  "level"
+    t.string   "trainer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "health"
+    t.integer  "experience", default: 0, null: false
+  end
 
   create_table "trainers", force: true do |t|
     t.string   "email",                  default: "", null: false

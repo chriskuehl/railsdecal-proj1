@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <h3>Create a Pokemon</h3>
+    <%= simple_form_for @pokemon do |f| %>
+      <%= f.input :name %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

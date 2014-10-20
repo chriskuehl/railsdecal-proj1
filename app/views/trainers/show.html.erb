@@ -1,3 +1,27 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
+
+<h4>Pokemon</h4>
+<% if current_trainer == @trainer %>
+  <%= button_to "+ Add Pokemon", new_pokemon_path(), :class => 'button small', :method => :get %>
+<% end %>
+
+<% for @pokemon in @trainer.pokemons %>
+  <% if @pokemon.health > 0 or current_trainer == @trainer %>
+    <h5><%= @pokemon.name %></h5>
+    <ul>
+      <li><strong>Level:</strong> <%= @pokemon.level %></li>
+      <li><strong>Health:</strong> <%= @pokemon.health %></li>
+      <li><strong>Experience:</strong> <%= @pokemon.experience %>/<%= @pokemon.exp_needed() %></li>
+    </ul>
+
+    <% if @pokemon.health > 0 %>
+      <%= button_to "Damage", damage_path(id: @pokemon.id), :class => 'button small', :method => :post %>
+    <% end %>
+
+    <% if @pokemon.health < 100 and current_trainer == @trainer %>
+      <%= button_to "Heal", heal_path(id: @pokemon.id), :class => 'button small', :method => :patch %>
+    <% end %>
+  <% end %>
+<% end %>
